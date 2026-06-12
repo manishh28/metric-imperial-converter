@@ -6,7 +6,6 @@ let convertHandler = new ConvertHandler();
 
 suite('Unit Tests', function() {
 
-  // getNum tests
   test('whole number input', function() {
     assert.equal(convertHandler.getNum('32L'), 32);
   });
@@ -31,12 +30,10 @@ suite('Unit Tests', function() {
     assert.equal(convertHandler.getNum('kg'), 1);
   });
 
-  // getUnit tests
   test('read each valid input unit', function() {
-    const valid = ['gal', 'L', 'mi', 'km', 'lbs', 'kg',
-                   'GAL', 'l',  'MI', 'KM', 'LBS', 'KG'];
+    const valid = ['gal','L','mi','km','lbs','kg','GAL','l','MI','KM','LBS','KG'];
     valid.forEach(u => {
-      assert.notEqual(convertHandler.getUnit(u), 'invalid unit', `Should accept: ${u}`);
+      assert.notEqual(convertHandler.getUnit(u), 'invalid unit');
     });
   });
 
@@ -53,15 +50,14 @@ suite('Unit Tests', function() {
 
   test('spelled-out string unit for each valid input unit', function() {
     const pairs = [
-      ['gal','gallons'], ['L','liters'], ['mi','miles'],
-      ['km','kilometers'], ['lbs','pounds'], ['kg','kilograms']
+      ['gal','gallons'],['L','liters'],['mi','miles'],
+      ['km','kilometers'],['lbs','pounds'],['kg','kilograms']
     ];
     pairs.forEach(([unit, spelled]) => {
       assert.equal(convertHandler.spellOutUnit(unit), spelled);
     });
   });
 
-  // convert tests
   test('gal to L', function() {
     assert.approximately(convertHandler.convert(1, 'gal'), 3.78541, 0.00001);
   });
