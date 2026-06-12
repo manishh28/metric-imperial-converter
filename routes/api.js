@@ -9,21 +9,20 @@ module.exports = function(app) {
     const input = req.query.input;
 
     if (!input) {
-      return res.json({ error: 'invalid input' });
+      return res.send('invalid input');
     }
 
     const initNum  = convertHandler.getNum(input);
     const initUnit = convertHandler.getUnit(input);
 
-    // Both invalid
     if (initNum === 'invalid number' && initUnit === 'invalid unit') {
-      return res.json({ error: 'invalid number and unit' });
+      return res.send('invalid number and unit');
     }
     if (initNum === 'invalid number') {
-      return res.json({ error: 'invalid number' });
+      return res.send('invalid number');
     }
     if (initUnit === 'invalid unit') {
-      return res.json({ error: 'invalid unit' });
+      return res.send('invalid unit');
     }
 
     const returnNum  = convertHandler.convert(initNum, initUnit);
